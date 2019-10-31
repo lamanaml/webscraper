@@ -4,11 +4,25 @@ var mongojs = require("mongojs");
 var express = require("express");
 var app = express();
 var mongoose = require("mongoose");
+var exphbs = require("express-handlebars");
+var PORT = process.env.PORT || 3002;
 
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+var db = require("./models");
+// app.use(express.static("public"));
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoVegTimes";
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, err => {
+    if(err) {
+        console.log("You have an error" + err);
+    } else {
+        console.log("You are connected to Mongoose");
+    }
+});
 
 
 // Database configuration
@@ -16,15 +30,13 @@ var databaseUrl = "vegtimes";
 var collections = ["recipes"]; 
 
 // Hook mongojs configuration to the db variable
-var db = mongojs(databaseUrl, collections);
+var db = mongojs(databaseUrl, collections); 
 db.on("error", function(error) {
  console.log("Database Error:", error);
 });
 
-// Main route (simple Hello World Message)
-app.get("/", function(req, res) {
-  res.send("Hello world");
-});
+// Main route 
+
 
 app.get("/scrape", function(req, res) {
     axios.get("http://vegetariantimes.com/recipes/collection/vegan-entrees").then(function(response){
@@ -54,7 +66,7 @@ app.get("/scrape", function(req, res) {
 })
 
 // Retrieve data from the db
-app.get("/all", function(req, res) {
+app.get("/", function(req, res) {
   // Find all results from the scrapedData collection in the db
   db.scrapedData.find({}, function(error, found) {
     // Throw any errors to the console
@@ -63,14 +75,15 @@ app.get("/all", function(req, res) {
     }
     // If there are no errors, send the data to the browser as json
     else {
-      res.json(found);
+      console.log("should show")
+      res.render("index", { recipes: res });
     }
   });
 });
 
 
     // Listen on port 3000
-    app.listen(3000, function() {
-        console.log("App running on port 3000!");
+    app.listen(3002, function() {
+        console.log("App running on port 3002!");
     });
 
