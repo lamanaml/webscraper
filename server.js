@@ -25,15 +25,15 @@ mongoose.connect(MONGODB_URI, err => {
 });
 
 
-// // Database configuration
-// var databaseUrl = "vegtimes";
-// var collections = ["recipes"]; 
+// Database configuration
+var databaseUrl = "vegtimes";
+var collections = ["recipes"]; 
 
-// // Hook mongojs configuration to the db variable
-// var db = mongojs(databaseUrl, collections); 
-// db.on("error", function(error) {
-//  console.log("Database Error:", error);
-// });
+// Hook mongojs configuration to the db variable
+var db = mongojs(databaseUrl, collections); 
+db.on("error", function(error) {
+ console.log("Database Error:", error);
+});
 
 // Main route 
 
