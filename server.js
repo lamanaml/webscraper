@@ -14,7 +14,7 @@ app.set("view engine", "handlebars");
 var db = require("./models");
 // app.use(express.static("public"));
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoVegTimes";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/vegtimes";
 
 mongoose.connect(MONGODB_URI, err => {
     if(err) {
@@ -25,15 +25,15 @@ mongoose.connect(MONGODB_URI, err => {
 });
 
 
-// Database configuration
-var databaseUrl = "vegtimes";
-var collections = ["recipes"]; 
+// // Database configuration
+// var databaseUrl = "vegtimes";
+// var collections = ["recipes"]; 
 
-// Hook mongojs configuration to the db variable
-var db = mongojs(databaseUrl, collections); 
-db.on("error", function(error) {
- console.log("Database Error:", error);
-});
+// // Hook mongojs configuration to the db variable
+// var db = mongojs(databaseUrl, collections); 
+// db.on("error", function(error) {
+//  console.log("Database Error:", error);
+// });
 
 // Main route 
 
@@ -68,14 +68,18 @@ app.get("/scrape", function(req, res) {
 // Retrieve data from the db
 app.get("/", function(req, res) {
   // Find all results from the scrapedData collection in the db
+  console.log(res)
   db.scrapedData.find({}, function(error, found) {
+    console.log(found)
     // Throw any errors to the console
     if (error) {
       console.log(error);
     }
     // If there are no errors, send the data to the browser as json
     else {
+      console.log(res)
       console.log("should show")
+      
       res.render("index", { recipes: res });
     }
   });
