@@ -11,8 +11,8 @@ var RecipeSchema = new Schema({
     type: String,
     required: true
   },
-  // `link` is required and of type String
-  link: {
+  // `image` is required and of type String
+  image: {
     type: String,
     required: true
   },
