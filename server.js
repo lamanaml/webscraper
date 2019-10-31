@@ -3,6 +3,13 @@ var axios = require("axios");
 var mongojs = require("mongojs");
 var express = require("express");
 var app = express();
+var mongoose = require("mongoose");
+
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoVegTimes";
+
+mongoose.connect(MONGODB_URI);
+
 
 // Database configuration
 var databaseUrl = "vegtimes";
