@@ -11,18 +11,18 @@ var PORT = process.env.PORT || 3002;
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var db = require("./models");
+var datas = require("./models");
 // app.use(express.static("public"));
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/vegtimes";
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoVegTimes";
 
-mongoose.connect(MONGODB_URI, err => {
-    if(err) {
-        console.log("You have an error" + err);
-    } else {
-        console.log("You are connected to Mongoose");
-    }
-});
+// mongoose.connect(MONGODB_URI, err => {
+//     if(err) {
+//         console.log("You have an error" + err);
+//     } else {
+//         console.log("You are connected to Mongoose");
+//     }
+// });
 
 
 // Database configuration
@@ -44,7 +44,8 @@ app.get("/scrape", function(req, res) {
         $("img").each(function(i, element) {
             var title = $(element).attr("alt");
             var image = $(element).attr("src");
-            db.scrapedData.insert({
+            // db.scrapedData.insert({
+                 db.scrapedData.create({
                 title: title,
                 image: image,
                 },
@@ -67,22 +68,22 @@ app.get("/scrape", function(req, res) {
 
 // Retrieve data from the db
 app.get("/", function(req, res) {
+
   // Find all results from the scrapedData collection in the db
-  console.log(res)
   db.scrapedData.find({}, function(error, found) {
-    console.log(found)
     // Throw any errors to the console
     if (error) {
       console.log(error);
     }
     // If there are no errors, send the data to the browser as json
     else {
-      console.log(res)
       console.log("should show")
+      console.log(found)
+      res.render("index", { recipes: found });
       
-      res.render("index", { recipes: res });
     }
   });
+  
 });
 
 
