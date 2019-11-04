@@ -1,8 +1,19 @@
-<h1>Welcome to the Recipe Database</h1>
-Your Recipes
+
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to the Recipe Database</h1>
+   <hr class="my-4">
+</div>
+
  {{#each recipe}}
- <p>{{this.title}}</p>
-  <p>{{this.image}}</p>
+
+ <div class="card" style="width: 18rem;">
+  <img src="{{this.image}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <a class="card-text">{{this.title}}<br />
+    {{!-- <a class="card-body" href="https://www.vegetariantimes.com/recipes/collection/vegan-entrees/{{this.link}}" class="card-link">Get the Recipe</a></a> --}}
+    
+  
+</div>
 
 
  {{/each}}

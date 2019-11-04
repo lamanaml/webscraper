@@ -22,13 +22,14 @@ router.get("/scrape", function(req, res) {
 
       result.title = $(this)
         .attr("alt");
-console.log(results.title)
+console.log(result.title)
       result.image = $(this)
-        .attr("src");
-
-      // result.link = $(this)
-      //   .children("a")
-      //   .attr("href");
+        .attr(" img src")
+        console.log(result.image);
+ 
+      //  result.link = $(this)
+      //    .attr("href")
+      //    console.log(result.link);
 
       if (result.title !== "" && result.image !== "") {
         if (titlesArray.indexOf(result.title) == -1) {

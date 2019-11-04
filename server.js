@@ -1,16 +1,16 @@
-var bodyParser = require("body-parser");
+//var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var logger = require("morgan");
+// var logger = require("morgan");
 
 //Express app
 var express = require("express");
 var app = express();
 
-app.use(logger("dev"));
-app.use(bodyParser.urlencoded({ extended: false  })
-);
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use(express.static(process.cwd() + "/public"));
+
 //Require set up handlebars
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({    defaultLayout: "main"   }) );
@@ -30,10 +30,11 @@ db.once("open", function() {
 
 var routes = require("./controller/controller.js");
 app.use("/", routes);
+
 //Create localhost port
-var port = process.env.PORT || 3000;
-app.listen(port, function() {
-  console.log("Listening on PORT " + port);
+var PORT = process.env.PORT || 3000;
+app.listen(PORT, function() {
+  console.log("Listening on PORT " + PORT);
 });
 
 
@@ -47,67 +48,3 @@ app.listen(port, function() {
 
 
 
-//////////////////////////////////////////////////
-
-
-
-
-
-
-// app.get("/scrape", function(req, res) {
-//     axios.get("http://vegetariantimes.com/recipes/collection/vegan-entrees").then(function(response){
-//         var $ = cheerio.load;
-
-//         var results = [];
-        
-//         $("img").each(function(i, element) {
-
-//             var title = $(element).attr("alt");
-//             var image = $(element).attr("src");
-
-//             db.scrapedData.create({
-//                 title: title,
-//                 image: image,
-//             },
-//                 function(err, inserted) {
-//                     if (err) {
-//                     // Log the error if one is encountered during the query
-//                     console.log(err);
-//                     }
-//                     else {
-//                     // Otherwise, log the inserted data
-//                     console.log(inserted);
-//                     }
-//                 }
-//             ).then(function(dbRecipe) {
-//                 console.log(dbRecipe);
-//         });      
-//     // Send a "Scrape Complete" message to the browser
-//     res.send("Scrape Complete");
-//     });
-// })
-
-// // Retrieve data from the db
-//  app.get("/", function(req, res) {
-
-// //   // Find all results from the scrapedData collection in the db
-// db.scrapedData.find({}, function(error, found) {
-// //   Throw any errors to the console
-//     if (error) {
-//     console.log(error);
-//      }
-// //  If there are no errors, send the data to the browser as json
-//    else {
-//     console.log("should show")
-//     res.render("index", { recipes: found });
-      
-//    }
-// });
-  
-//  });
-//  })
-
-//     // Listen on port 3000
-//     app.listen(3000, function() {
-//         console.log("App running on port 3000!");
-//     });
