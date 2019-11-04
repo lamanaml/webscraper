@@ -1,12 +1,4 @@
-// Grab the recipes as a json
-$.getJSON("/recipes", function(data) {
-  // For each one
-  for (var i = 0; i < data.length; i++) {
-    // Display information on the page
-    $("#recipes").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].image + "</p>");
-  }
-});
-
+$('#modal').modal(options)
 
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function() {
@@ -70,3 +62,4 @@ $(document).on("click", "#savenote", function() {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+

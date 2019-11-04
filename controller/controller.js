@@ -58,9 +58,7 @@ console.log(result.title)
   });
 });
 router.get("/recipes", function(req, res) {
-  Recipe.find()
-    .sort({ _id: -1 })
-    .exec(function(err, doc) {
+  Recipe.find(function(err, doc) {
       if (err) {
         console.log(err);
       } else {
@@ -86,7 +84,7 @@ router.get("/clearAll", function(req, res) {
       console.log("removed all recipes");
     }
   });
-  res.redirect("/recipes-json");
+  res.redirect("/");
 });
 router.get("/readRecipe/:id", function(req, res) {
   var recipeId = req.params.id;

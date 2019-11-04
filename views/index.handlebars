@@ -1,4 +1,4 @@
-{{> header }}
+{{> nav }}
 <div class="jumbotron">
   <h1 class="display-4">Welcome to the Recipe Database</h1>
    <hr class="my-4">
@@ -13,8 +13,27 @@
                 <div class="card-body">
                 <p class="card-text">{{this.title}}</p>
                     <div class="card-body">
-                        <a href="#" class="card-link">Add Notes</a>
-                        <a href="#" class="card-link">Delete Article</a>
+                       <!-- modal -->
+                            <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm2">Add a Note</button>
+
+                            <div class="modal fade bs-example-modal-sm2">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Notes</h4> 
+                                </div>
+                                <div class="modal-body">
+                                    <p>{{> notes }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                             <a href="#" class="card-link">Delete Article</a>
                     </div>
                 </div>
             </div>

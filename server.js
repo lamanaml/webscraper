@@ -23,10 +23,6 @@ const MONGODB_URI =
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 var db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function() {
-  console.log("Connected to Mongoose!");
-});
 
 var routes = require("./controller/controller.js");
 app.use("/", routes);
