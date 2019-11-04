@@ -1,21 +1,31 @@
-
+{{> header }}
 <div class="jumbotron">
   <h1 class="display-4">Welcome to the Recipe Database</h1>
    <hr class="my-4">
 </div>
+<div class="container">
 
- {{#each recipe}}
-
- <div class="card" style="width: 18rem;">
-  <img src="{{this.image}}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <a class="card-text">{{this.title}}<br />
-    {{!-- <a class="card-body" href="https://www.vegetariantimes.com/recipes/collection/vegan-entrees/{{this.link}}" class="card-link">Get the Recipe</a></a> --}}
-    
-  
+    <tbody> 
+        {{#recipe}} 
+        <tr> 
+            <div class="card" style="width: 18rem;">
+                <img src="{{this.image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                <p class="card-text">{{this.title}}</p>
+                    <div class="card-body">
+                        <a href="#" class="card-link">Add Notes</a>
+                        <a href="#" class="card-link">Delete Article</a>
+                    </div>
+                </div>
+            </div>
+        </tr> 
+        {{/recipe}} 
+    </tbody> 
+        
 </div>
 
 
- {{/each}}
-   
+
+
+
      

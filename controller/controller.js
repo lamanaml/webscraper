@@ -11,7 +11,6 @@ var Recipe = require("../models/Recipe.js");
 router.get("/", function(req, res) {
   res.redirect("/recipes");
 });
-
 router.get("/scrape", function(req, res) {
   request("http://vegetariantimes.com/recipes/collection/vegan-entrees", function(error, response, html) {
     var $ = cheerio.load(html);
@@ -70,7 +69,6 @@ router.get("/recipes", function(req, res) {
       }
     });
 });
-
 router.get("/recipes-json", function(req, res) {
   Recipe.find({}, function(err, doc) {
     if (err) {
@@ -80,7 +78,6 @@ router.get("/recipes-json", function(req, res) {
     }
   });
 });
-
 router.get("/clearAll", function(req, res) {
   Recipe.remove({}, function(err, doc) {
     if (err) {
@@ -91,7 +88,6 @@ router.get("/clearAll", function(req, res) {
   });
   res.redirect("/recipes-json");
 });
-
 router.get("/readRecipe/:id", function(req, res) {
   var recipeId = req.params.id;
   var hbsObj = {
