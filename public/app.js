@@ -1,6 +1,7 @@
-$('#modal').modal(options)
+$(window).load(function(){
+$('#my_modal').modal('show');
+}); 
 
-// Whenever someone clicks a p tag
 $(document).on("click", "p", function() {
   // Empty the notes from the note section
   $("#notes").empty();
@@ -10,7 +11,7 @@ $(document).on("click", "p", function() {
   // Now make an ajax call for the Article
   $.ajax({
     method: "GET",
-    url: "/recipes/" + thisId
+    url: "/recipes" + thisId
   })
     // With that done, add the note information to the page
     .then(function(data) {

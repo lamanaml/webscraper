@@ -5,46 +5,46 @@
 </div>
 <div class="container">
 
-    <tbody> 
-        {{#recipe}} 
-        <tr> 
+      <div class="row">
+        {{#each recipe}} 
+   
+         
             <div class="card" style="width: 18rem;">
                 <img src="{{this.image}}" class="card-img-top" alt="...">
                 <div class="card-body">
-                <p class="card-text">{{this.title}}</p>
+                <p class="card-text"><h5>{{this.title}}</h5></p>
                     <div class="card-body">
-                       <!-- modal -->
-                            <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm2">Add a Note</button>
 
-                            <div class="modal fade bs-example-modal-sm2">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">Notes</h4> 
-                                </div>
-                                <div class="modal-body">
-                                    <p>{{> notes }}</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                             <a href="#" class="card-link">Delete Article</a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Add Notes
+                    </button>
+
+                    
+                   
+                    <a href="#" class="card-link">Delete Article</a>
                     </div>
                 </div>
             </div>
-        </tr> 
-        {{/recipe}} 
-    </tbody> 
-        
+       
+        {{/each}} 
+    </div> 
 </div>
 
 
 
+{{> notemodal}}
 
+<button onclick="content()" data-toggle="modal" data-target="#my_modal">Save</button>
 
-     
+<form action="addPage.php" method="post">
+  <div class="modal fade" id="my_modal" tabindex="-1" role="dialog" aria-labelledby="savePageLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="savePageLabel">Page Details:</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
