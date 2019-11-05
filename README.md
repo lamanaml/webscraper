@@ -10,7 +10,7 @@ https://stark-cliffs-46952.herokuapp.com/
 ### Github Repo
 https://github.com/lamanaml/webscraper
 
-![Screenshot](public/images/webscraper.png)
+![Screenshot](public/images/webscraper.jpg)
 
 ## Skills
 * Express
