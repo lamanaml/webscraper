@@ -21,7 +21,8 @@ https://github.com/lamanaml/webscraper
 * Cheerio
 
 ### Open Issues - still working on them
-* deployong on mongolab
-* adding handlebar elements to table cells for a better layout
+* adding a note
+* deleting a note
+* deleting a single article
 * opening modals using handlebars
 
