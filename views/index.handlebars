@@ -1,4 +1,69 @@
 {{> nav }}
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style="float:left">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"  style="float:right">&times;</button>
+        <h4 class="modal-title" style="float:left">Comment on this Recipe</h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+ 
+    <form action="/comment/{{recipe._id}}" method="POST" class="card-panel col s12">
+       
+        <hr>
+        <div class="row">
+            <div class="input-field">
+                {{!-- <i class="material-icons prefix">perm_identity</i> --}}
+                <input id="icon_prefix" type="text" placeholder="Name" name="name" class="validate active">
+            </div>
+            </div>
+          <div class="row">
+            <div class="input-field">
+                <i class="material-icons prefix"> Comment</i>
+                <input id="icon_telephone" type="text" placeholder="Comment" name="comment" class="validate active">
+            </div>
+            </div>  
+
+        </div>
+        <div class="row">
+            <div class="input-field">
+                <center><input class="btn add-comment-button topnav" type="submit" value="Submit"></center>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col s2"></div>
+    <div class="col s8">
+        <h5>Comments:</h5>
+        {{#if recipe.comment}}
+        {{#each recipe.comment}}
+        <div class="card">
+            <p id="nameComment">{{name}}</p>
+            <p>{{body}}<p>
+        </div>
+        {{/each}}
+        {{else}}
+        <p>No Comments Yet.</p>
+        {{/if}}
+
+    </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+{{!-- modal --}}
+
 <div class="jumbotron">
   <h1 class="display-4">Welcome to the Recipe Database</h1>
    <hr class="my-4">
@@ -15,10 +80,9 @@
                 <p class="card-text"><h5>{{this.title}}</h5></p>
                     <div class="card-body">
 
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notemodal">
-                    Add Notes
-                    </button>
+                    
+          <!-- Trigger the modal with a button -->
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Note</button>
 
                     
                    
@@ -34,44 +98,5 @@
 
 
 
-<!-- Central Modal Medium Success -->
-<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-notify modal-success" role="document">
-    <!--Content-->
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header">
-        <p class="heading lead">Modal Success</p>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" class="white-text">&times;</span>
-        </button>
-      </div>
 
-      <!--Body-->
-      <div class="modal-body">
-        <div class="text-center">
-          <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam
-            blanditiis ad consequatur in dolores culpa, dignissimos, eius non possimus fugiat.
-            Esse ratione fuga, enim, ab officiis totam.</p>
-        </div>
-      </div>
-
-      <!--Footer-->
-      <div class="modal-footer justify-content-center">
-        <a type="button" class="btn btn-success">Get it now <i class="far fa-gem ml-1 white-text"></i></a>
-        <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">No, thanks</a>
-      </div>
-    </div>
-    <!--/.Content-->
-  </div>
-</div>
-<!-- Central Modal Medium Success-->
-
-<!-- Button trigger modal -->
-<div class="text-center">
-  <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#centralModalSuccess">Launch
-    Modal Success <i class="far fa-eye ml-1"></i></a>
-</div>

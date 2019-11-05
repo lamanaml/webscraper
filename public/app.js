@@ -1,6 +1,6 @@
-$("#centralModalSuccess").on('show.bs.modal', function(){
-   alert("should be working");
-});; 
+// $("#centralModalSuccess").on("click", 'show.bs.modal', function(){
+//    alert("should be working");
+// });; 
 
 $(document).on("click", "p", function() {
   // Empty the notes from the note section
@@ -8,7 +8,7 @@ $(document).on("click", "p", function() {
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
 
-  // Now make an ajax call for the Article
+  // Now make an ajax call for the Recipe
   $.ajax({
     method: "GET",
     url: "/recipes" + thisId

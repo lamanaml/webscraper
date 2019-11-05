@@ -29,7 +29,7 @@ router.get("/scrape", function(req, res) {
       //    .attr("href")
       //    console.log(result.link);
 
-      if (result.title !== "" && result.image !== "") {
+      if (result.title !== "" && result.image !== "" && result.title !== "logo") {
         if (titlesArray.indexOf(result.title) == -1) {
           titlesArray.push(result.title);
 
@@ -148,6 +148,17 @@ router.post("/note/:id", function(req, res) {
       });
     }
   });
+});
+
+router.get("/clearAll", function(req, res) {
+  Recipe.remove({}, function(err, doc) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("removed all recipes");
+    }
+  });
+  res.redirect("/");
 });
 
 module.exports = router;
