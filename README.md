@@ -5,7 +5,7 @@ Web app that scrapes Vegetarian Times vegan recipes and displays the titles.  Al
 
 
 ### Live Site
-https://stark-cliffs-46952.herokuapp.com/
+https://webscraperld.herokuapp.com/
 
 ### Github Repo
 https://github.com/lamanaml/webscraper
